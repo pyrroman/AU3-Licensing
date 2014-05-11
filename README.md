@@ -25,3 +25,8 @@ The EXPIRATIONDATE is checked at each launch of the program, and there is a remi
 * Security improvement : provide your own key (which will be compiled in the executable) to enhance security through a double-decrypting system
 * Security improvement : Connect to server to check if the key exists, and if the key is still valid
 * Moar options : Select if the key should be saved in the registry or in a file, select which algorithm to use when crypting/decrypting key, add a PHP/MySQL server backend for key generation (rather than the KeyGen.au3 script)
+Some links : 
+http://www.autoitscript.com/forum/topic/49208-software-license-key-and-keygen/
+http://www.autoitscript.com/forum/topic/31020-xprotecau3-automated-protect-and-get-paid
+http://www.autoitscript.com/forum/topic/76898-licensing-validation-remote/
+http://www.autoitscript.com/forum/topic/145433-my-version-of-a-robust-license-key-system-example-code/
