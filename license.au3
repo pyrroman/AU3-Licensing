@@ -10,8 +10,7 @@
 #include <Crypt.au3>
 #include <String.au3>
 #include <Date.au3>
-;#include <Array.au3>
-#include "TaskDialog.au3"
+#include "Includes\TaskDialog.au3"
 #include <Crypt.au3>
 
 ;~ Configure here

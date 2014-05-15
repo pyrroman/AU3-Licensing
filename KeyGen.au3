@@ -4,9 +4,6 @@
 		 <jefreysobreira[at]gmail[dot]com>
 #ce
 
-;~ Configure here
-Global $myPasswd = "abc"
-
 #include <ButtonConstants.au3>
 #include <ComboConstants.au3>
 #include <DateTimeConstants.au3>
@@ -14,7 +11,7 @@ Global $myPasswd = "abc"
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <Array.au3>
- #include <Crypt.au3>
+#include <Crypt.au3>
 #include <String.au3>
 
 Opt("GUIOnEventMode", 1)
@@ -22,16 +19,11 @@ Opt("GUIOnEventMode", 1)
 $Form1_1 = GUICreate("License keygen", 290, 401, 449, 174)
 GUISetIcon("C:\Users\Windows\Desktop\cantina\icon.ico", -1)
 GUISetOnEvent($GUI_EVENT_CLOSE, "fechar")
-$Group1 = GUICtrlCreateGroup(" Machine ID (* = anyone) ", 8, 8, 273, 49)
+$Group1 = GUICtrlCreateGroup(" Machine ID ", 8, 8, 273, 49)
 $usercode = GUICtrlCreateInput("", 16, 24, 257, 21)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group2 = GUICtrlCreateGroup(" Can be used until ", 8, 120, 273, 49)
 $register_till = GUICtrlCreateDate(@YEAR & "/" & @MON & "/" & @MDAY, 16, 136, 257, 25, $DTS_UPDOWN)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group3 = GUICtrlCreateGroup(" Valid for ", 8, 64, 273, 49)
-$valid_num = GUICtrlCreateInput("", 16, 80, 137, 21, BitOR($GUI_SS_DEFAULT_INPUT,$ES_NUMBER))
-$valid_unit = GUICtrlCreateCombo("", 160, 80, 113, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
-GUICtrlSetData(-1, "Days|Weeks|Months|Years")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 $Group4 = GUICtrlCreateGroup(" Generate ", 8, 176, 273, 161)
 $Button1 = GUICtrlCreateButton("Generate", 16, 192, 257, 25)
@@ -61,11 +53,9 @@ EndFunc
 Func generate()
    Global $rUsercode = GUICtrlRead($usercode)
    $rRegister_till = GUICtrlRead($register_till)
-   $rValid_num = GUICtrlRead($valid_num)
-   $rValid_unit = GUICtrlRead($valid_unit)
    $serial = serial($rUsercode, $rRegister_till)
    $info = "Machine ID: " & $rUsercode & @CRLF & _
-			"Valid for: " & $rValid_num & " " & StringLower($rValid_unit) & @CRLF & _
+			"Valid until: " & $rRegister_till & " " & @CRLF & _
 			"Serial: " & $serial
    GUICtrlSetData($showserial, $serial)
    GUICtrlSetData($showinfo, $info)
@@ -88,10 +78,10 @@ EndFunc
 
 Func serial($code, $till)
 	$fSerial=$code & "\" & $till
-	Return _Crypt_EncryptData($fSerial, $code, $CALG_AES_192);8bb2498-84af-4e1b-bcf8-1281fdedf9e
+	Return _Crypt_EncryptData($fSerial, $code, $CALG_AES_192)
 EndFunc
 
-Func checar() ;0xC9AC465CE751DC19F0D59AE4DBF5D4419957943CE9C52B2342A335AC607A8F14DF365376D09A456E25220D8964C626F91BEAB1BD7CC28B416C6C3C53565185BB
+Func checar()
 	Local $retorno=serialinfo(GUICtrlRead($tocheck))
    If UBound($retorno)<>3 Then
 	  MsgBox(0, "Check", "Invalid serial")
